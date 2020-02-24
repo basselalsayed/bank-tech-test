@@ -5,4 +5,9 @@ attr_reader :transactions, :balance
     @transactions = []
     @balance = 0
   end
+
+  def deposit(amount:, deposit: Deposit)
+    @balance += amount
+    deposit.new(amount: amount, balance: @balance)
+  end
 end
