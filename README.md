@@ -1,3 +1,8 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/c45ee4a4685840d55217/maintainability)](https://codeclimate.com/github/basselalsayed/bank-tech-test/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/c45ee4a4685840d55217/test_coverage)](https://codeclimate.com/github/basselalsayed/bank-tech-test/test_coverage)
+[![Build Status](https://travis-ci.org/basselalsayed/bank-tech-test.svg?branch=master)](https://travis-ci.org/basselalsayed/bank-tech-test)
+[![Build Status](https://travis-ci.org/github/basselalsayed/bank-tech-test.png?branch=master)](https://travis-ci.org/github/basselalsayed/bank-tech-test)
+
 # This will be a simple program for recording a client's bank statement history
 # It will consist of 4 classes:
 * Client
