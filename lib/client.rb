@@ -9,4 +9,8 @@ class Client
     @account.deposit(amount)
   end
 
+  def withdraw(amount:)
+    @account.withdraw(amount)
+  end
+
 end
