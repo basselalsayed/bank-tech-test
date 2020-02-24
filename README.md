@@ -7,6 +7,7 @@
   
 # Classes and Methods
 ## Client
+* account/(s) - a single account or array of accounts
 * deposit (creates a new instance of Deposit with the relevant attributes)
 * withdraw (creates a new instance of Withdrawl with the relevant attributes)
 * print_statement (calls upon account.statement instance method)
