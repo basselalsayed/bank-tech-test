@@ -13,4 +13,7 @@ class Client
     @account.withdraw(amount)
   end
 
+  def print_statement
+    @account.print_statement
+  end
 end
