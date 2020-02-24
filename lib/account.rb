@@ -6,15 +6,15 @@ attr_reader :transactions, :balance
     @balance = 0
   end
 
-  def deposit(amount:, deposit: Deposit)
+  def deposit(amount:, transaction: Transaction)
     @balance += amount
-    @transactions << deposit.new(amount: amount, balance: @balance)
+    @transactions << transaction.new(type: 'deposit', amount: amount, balance: @balance)
   end
 
-  def withdraw(amount:, withdrawal: Withdrawal)
+  def withdraw(amount:, transaction: Transaction)
     raise 'Insufficient Funds' if (@balance - amount < 0 )
     @balance -= amount
-    @transactions << withdrawal.new(amount: amount, balance: @balance)
+    @transactions << transaction.new(type: 'withdrawal', amount: amount, balance: @balance)
   end
 
   def print_statement

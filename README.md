@@ -23,3 +23,7 @@
   * account_balance_after_transaction
 
 Since there is no database with unique keys attached to the models I will simply pass in an instance of account to client for testing.
+
+## Changelog v1.1
+* I've changed the classes to have one transaction class with a `type` attribute equalling either deposit or withdrawal
+ 
