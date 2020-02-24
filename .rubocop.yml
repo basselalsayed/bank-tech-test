@@ -1,0 +1,32 @@
+require: rubocop-rspec
+
+RSpec/FilePath:
+  Exclude:
+    - 'spec/integrations/*'
+
+RSpec/Be:
+    Enabled: false
+
+RSpec/ExampleLength:
+    Max: 12
+
+Style/FormatStringToken:
+    Enabled: false
+
+RSpec/EmptyExampleGroup:
+    Enabled: false
+
+Documentation:
+    Enabled: false
+
+Metrics/BlockLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 15
+
+Metrics/LineLength:
+  Max: 130
+
+RSpec/MultipleExpectations:
+    Max: 1

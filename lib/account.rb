@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Account
   attr_reader :transactions, :balance
 
@@ -13,7 +15,7 @@ class Account
   end
 
   def withdraw(amount:)
-    raise 'Insufficient Funds' if @balance - amount < 0
+    raise 'Insufficient Funds' if (@balance - amount).negative?
 
     take_from_balance(amount)
     @transactions << @transaction.new(type: 'withdrawal', amount: amount, balance: @balance)
@@ -22,14 +24,14 @@ class Account
   def print_statement
     header = ['date || credit || debit || balance']
     sorted_transactions = @transactions.sort_by(&:created_at).reverse
-    sorted_transactions.each { |tran| header << tran.print}
+    sorted_transactions.each { |tran| header << tran.print }
     header.join("\n")
   end
 
   private
 
   def transaction(transaction)
-    transaction ||= Transaction
+    transaction || Transaction
   end
 
   def add_to_balance(amount)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Transaction
   attr_reader :amount, :type, :balance, :created_at
 
@@ -10,9 +12,9 @@ class Transaction
 
   def print
     if @type == 'deposit'
-      "#{@created_at} || #{('%.2f' % @amount)} || || #{('%.2f' % @balance)}"
+      "#{@created_at} || #{format('%.2f', @amount)} || || #{format('%.2f', @balance)}"
     else
-      "#{@created_at} || || #{('%.2f' % @amount)} || #{('%.2f' % @balance)}"
+      "#{@created_at} || || #{format('%.2f', @amount)} || #{format('%.2f', @balance)}"
     end
   end
 end
