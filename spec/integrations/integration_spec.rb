@@ -31,5 +31,12 @@ describe Client do
       client.withdraw(amount: 50)
       expect(client.account.transactions.last.type).to eq 'withdrawal'
     end
+
+    it 'prints a statement' do
+      expect(client.print_statement).to eq [
+        'date || credit || debit || balance',
+        '24/02/2020 || 100.00 || || 100.00'
+      ].join("\n")
+    end
   end
 end
