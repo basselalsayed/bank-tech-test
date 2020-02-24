@@ -27,8 +27,6 @@ attr_reader :transactions, :balance
         transaction = ["#{transaction.created_at.strftime('%d/%m/%Y')}", '||', '||', ('%.2f' % transaction.amount), '||', ('%.2f' % transaction.balance) ].join(' ')
       end
     }.join("\n")
-    p arr
-    p @transactions
     header.join("\n")
   end
 end
