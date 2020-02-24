@@ -1,8 +1,7 @@
 language: ruby
 rvm:
 - 2.6.5
-- jruby-19mode
-- rbx-2
+
 script:
   - bundle exec rspec
   - bundle exec rubocop
