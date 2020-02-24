@@ -1,3 +1,5 @@
+require_relative 'account'
+require_relative 'transaction'
 class Client
   attr_reader :account
 
