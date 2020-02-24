@@ -4,8 +4,8 @@ describe Account do
   let(:account) { described_class.new(transaction: transaction) }
   let(:transaction) { double(:transaction) }
 
-  # deposit and withdrawal are dummy instances of transaction class that respond
-  # to how the Account class creates them
+  # deposit and withdrawal are dummy instances of transaction class 
+  # that respond to how the Account class creates them
   let(:deposit) { double(:deposit, { type: 'deposit', amount: 1000, balance: 1000, created_at: Time.local(2020, 'feb', 24) }) }
   let(:withdrawal) { double(:withdrawal, { type: 'withdrawal', amount: 500, balance: 500, created_at: Time.local(2020, 'feb', 25) }) }
 
@@ -71,14 +71,26 @@ describe Account do
   end
 
   describe 'needs historic transactions to test print_statement' do
-    let(:expected_output) do
+    let(:expected_output) {
       ['date || credit || debit || balance',
        '25/02/2020 || || 500.00 || 500.00',
        '24/02/2020 || 1000.00 || || 1000.00'].join("\n")
-    end
+      }
     before do
       account.deposit(amount: 1000)
       account.withdraw(amount: 500)
+      allow(deposit).to receive(:print).and_return(['24/02/2020',
+                                                    '||',
+                                                    '1000.00',
+                                                    '||',
+                                                    '||',
+                                                    '1000.00'].join(' '))
+      allow(withdrawal).to receive(:print).and_return(['25/02/2020',
+                                                    '||',
+                                                    '||',
+                                                    '500.00',
+                                                    '||',
+                                                    '500.00'].join(' '))
     end
     it 'returns a string of all previous transactions' do
       expect(account.print_statement).to eq expected_output

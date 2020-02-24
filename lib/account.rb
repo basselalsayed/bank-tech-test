@@ -22,13 +22,7 @@ class Account
   def print_statement
     header = ['date || credit || debit || balance']
     sorted_transactions = @transactions.sort_by(&:created_at).reverse
-    header << sorted_transactions.map do |transaction|
-      if transaction.type == 'deposit'
-        transaction = [transaction.created_at.strftime('%d/%m/%Y').to_s, '||', ('%.2f' % transaction.amount), '||', '||', ('%.2f' % transaction.balance)].join(' ')
-      else
-        transaction = [transaction.created_at.strftime('%d/%m/%Y').to_s, '||', '||', ('%.2f' % transaction.amount), '||', ('%.2f' % transaction.balance)].join(' ')
-      end
-    end.join("\n")
+    sorted_transactions.each { |tran| header << tran.print}
     header.join("\n")
   end
 

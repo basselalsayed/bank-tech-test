@@ -7,4 +7,12 @@ class Transaction
     @balance = balance
     @created_at = created_at.strftime('%d/%m/%Y')
   end
+
+  def print
+    if @type == 'deposit'
+      "#{@created_at} || #{('%.2f' % @amount)} || || #{('%.2f' % @balance)}"
+    else
+      "#{@created_at} || || #{('%.2f' % @amount)} || #{('%.2f' % @balance)}"
+    end
+  end
 end
