@@ -2,14 +2,15 @@ require 'account'
 
 describe Account do
   let(:account) { described_class.new }
-  let(:deposit) { double(:deposit, { created_at: Time.now }) }
-  let(:deposit2) { double(:deposit, { amount: 1000, balance: 1000, created_at: Time.now }) }
-  let(:withdrawal) { double(:withdrawal, { created_at: Time.now }) }
-  let(:withdrawal2) { double(:withdrawal, { amount: 500, balance: 500, created_at: Time.now }) }
+  let(:deposit) { double(:deposit) }
+  let(:transaction) { double(:deposit, { type: 'deposit', amount: 1000, balance: 1000,  created_at: Time.local(2020, 'feb', 24) }) }
+  
+  let(:withdrawal) { double(:withdrawal) }
+  let(:transaction2) { double(:withdrawal, { type: 'withdrawal', amount: 500, balance: 500, created_at: Time.local(2020, 'feb', 25) }) }
   
   before do
-    allow(deposit).to receive(:new).with(any_args).and_return(deposit2)
-    allow(withdrawal).to receive(:new).with(any_args).and_return(withdrawal2)
+    allow(deposit).to receive(:new).with(any_args).and_return(transaction)
+    allow(withdrawal).to receive(:new).with(any_args).and_return(transaction2)
   end
 
   describe '#initialization' do
@@ -27,9 +28,9 @@ describe Account do
     before do
       account.deposit(amount: 1000, deposit: deposit)
     end
-    
+
     it 'adds the new instance of deposit to transactions' do
-      expect(account.transactions.first).to eq deposit2
+      expect(account.transactions.first).to eq transaction
     end
     it 'increases the balance' do
       expect(account.balance).to eq 1000
@@ -54,11 +55,24 @@ describe Account do
       end
       
       it 'adds the new instance of withdrawal to transactions' do
-        expect(account.transactions.last).to eq withdrawal2
+        expect(account.transactions.last).to eq transaction2
       end
       it 'decreases the balance' do
         expect(account.balance).to eq 500
       end
+    end
+  end
+
+  context 'needs historic transactions' do
+    let(:expected_output) { ['date || credit || debit || balance',
+                             '25/02/2020 || || 500.00 || 500.00',
+                             '24/02/2020 || 1000.00 || || 1000.00'].join("\n") }
+    before do 
+      account.deposit(amount: 1000, deposit: deposit)
+      account.withdraw(amount: 500, withdrawal: withdrawal)
+    end
+    it 'returns a string of all previous transactions' do
+      expect(account.print_statement).to eq expected_output
     end
   end
 end

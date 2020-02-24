@@ -16,4 +16,19 @@ attr_reader :transactions, :balance
     @balance -= amount
     @transactions << withdrawal.new(amount: amount, balance: @balance)
   end
+
+  def print_statement
+    header = ['date || credit || debit || balance']
+    arr = @transactions.sort_by(&:created_at).reverse
+    header << arr.map { |transaction|
+      if transaction.type == 'deposit' 
+        transaction = ["#{transaction.created_at.strftime('%d/%m/%Y')}", '||', ('%.2f' % transaction.amount), '||', '||',  ('%.2f' % transaction.balance) ].join(' ')
+      else
+        transaction = ["#{transaction.created_at.strftime('%d/%m/%Y')}", '||', '||', ('%.2f' % transaction.amount), '||', ('%.2f' % transaction.balance) ].join(' ')
+      end
+    }.join("\n")
+    p arr
+    p @transactions
+    header.join("\n")
+  end
 end
