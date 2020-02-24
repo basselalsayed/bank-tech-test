@@ -1,7 +1,7 @@
 require 'transaction'
 
 describe Transaction do
-  let(:transaction) { described_class.new(amount: 200, type: 'deposit', balance: 200) }
+  let(:transaction) { described_class.new(amount: 200, type: 'deposit', balance: 200, created_at: Time.local(2020, 'feb', 24)) }
 
   describe '#initialization' do
     it { expect(transaction.amount).to eq 200 }
