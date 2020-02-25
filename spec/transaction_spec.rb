@@ -3,7 +3,6 @@
 require 'transaction'
 
 describe Transaction do
-
   describe '#initialization' do
     it { expect(transaction.amount).to eq 200 }
     it { expect(transaction.type).to eq 'deposit' }

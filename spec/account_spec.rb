@@ -41,12 +41,11 @@ describe Account do
       account.withdraw(amount: 500)
       expect(transaction_double)
         .to have_received(:new)
-          .with(amount: 500, balance: 500, type: 'withdrawal')
+        .with(amount: 500, balance: 500, type: 'withdrawal')
     end
 
     it 'adds the new instance of withdrawal to transactions' do
       expect(account.transactions.first).to eq withdrawal
     end
   end
-
 end

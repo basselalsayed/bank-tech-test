@@ -9,7 +9,7 @@ describe Printer do
     end
 
     it 'prints a complete statement' do
-      expect(Printer.print_statement(account: account_double)).to eq printer_expected_output
+      expect(described_class.print_statement(account_double)).to eq printer_expected_output
     end
   end
 end

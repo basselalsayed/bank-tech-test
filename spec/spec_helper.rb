@@ -12,8 +12,7 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
 
 SimpleCov.start
 
-RSpec.shared_context "Global helpers" do
-
+RSpec.shared_context 'Global helpers' do
   # class doubles
   let(:transaction_double) { class_double('Transaction') }
   let(:printer_double) { class_double('Printer') }
@@ -34,26 +33,26 @@ RSpec.shared_context "Global helpers" do
                         created_at: Time.local(2020, 'feb', 25))
   end
 
-  # instance doubles 
-  let(:account_double) { instance_double('Account', :account, { balance: 1000,
-    transactions: [deposit, withdrawal] }) }
+  # instance doubles
+  let(:account_double) do
+    instance_double('Account', :account, { balance: 1000,
+                                           transactions: [deposit, withdrawal] })
+  end
   let(:deposit) do
     instance_double('Transaction',
-                    :deposit, 
+                    :deposit,
                     { type: 'deposit',
                       amount: 1000,
                       balance: 1000,
-                      created_at: Time.local(2020, 'feb', 24) 
-                    })
+                      created_at: Time.local(2020, 'feb', 24) })
   end
   let(:withdrawal) do
     instance_double('Transaction',
-                    :withdrawal, 
+                    :withdrawal,
                     { type: 'withdrawal',
                       amount: 500,
                       balance: 500,
-                      created_at: Time.local(2020, 'feb', 25) 
-                    })
+                      created_at: Time.local(2020, 'feb', 25) })
   end
 
   # expected outputs
@@ -91,6 +90,5 @@ RSpec.configure do |config|
   end
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
-  config.include_context "Global helpers"
+  config.include_context 'Global helpers'
 end
-

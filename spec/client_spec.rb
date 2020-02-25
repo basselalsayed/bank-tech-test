@@ -3,11 +3,10 @@
 require 'client'
 
 describe Client do
-
   before do
     client_spec_setup
   end
-  
+
   describe '#initialization' do
     it 'returns an account' do
       expect(client.account).to eq account_double

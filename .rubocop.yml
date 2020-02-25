@@ -3,7 +3,12 @@ require: rubocop-rspec
 RSpec/FilePath:
   Exclude:
     - 'spec/integrations/*'
-
+Metrics/AbcSize:
+  Enabled: false
+  
+RSpec/ContextWording:
+  Enabled: false
+  
 RSpec/Be:
     Enabled: false
 
