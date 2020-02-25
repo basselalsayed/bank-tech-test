@@ -20,16 +20,23 @@
 * transactions (array or hash containing instances of deposit & withdraw)
 * statement (returns array or sorted string of all transactions)
 
-# Deposit and Withdrawal
-* Will only have initialize methods with attributes of:
+# ~~Deposit and Withdrawal~~
+# Transaction
+* initialize method with attributes of:
   * amount
+  * type (deposit or withdrawal)
   * created_at (with defaults of `Time.now`)
-  * account_balance_after_transaction
-
+  * balance (after_transaction)
+# Printer
+* print_statement class method that returns the desired string output of transactions with header 
+  
 Since there is no database with unique keys attached to the models we will simply pass in an instance of account to client for testing.
 
-## Changelog v1.1
+## Changelog 
+### v1.1
 * Classes changed to have one transaction class with a `type` attribute equalling either deposit or withdrawal
+### v1.2
+* print_statement methods extracted to a seperate Printer class
 
 # Setup
 ## 1. First clone this directory somewhere on your machine

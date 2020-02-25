@@ -3,13 +3,14 @@
 require 'client'
 
 describe Client do
-  let(:account) { instance_double('Account', { balance: 1000 }) }
+  let(:account) { instance_double('Account', { balance: 1000,
+                                               transactions: [] }) }
   let(:client) { described_class.new(account: account) }
 
   before do
     allow(account).to receive(:deposit).with(amount: kind_of(Numeric))
     allow(account).to receive(:withdraw).with(amount: kind_of(Numeric))
-    allow(account).to receive(:print_statement).with(no_args)
+    # allow(account).to receive(:print_statement).with(no_args)
     client.deposit(amount: 5000)
     client.withdraw(amount: 5000)
     client.print_statement
@@ -35,7 +36,7 @@ describe Client do
 
   describe '#print_statement' do
     it 'calls upon print_statement method on account' do
-      expect(client.account).to have_received(:print_statement)
+      expect(client.account).to have_received(:transactions)
     end
   end
 end

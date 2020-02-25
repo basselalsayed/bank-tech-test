@@ -18,6 +18,6 @@ class Client
   end
 
   def print_statement
-    @account.print_statement
+    Printer.print_statement(account: @account)
   end
 end

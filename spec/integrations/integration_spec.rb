@@ -35,7 +35,7 @@ describe Client do
     it 'prints a statement' do
       expect(client.print_statement).to eq [
         'date || credit || debit || balance',
-        '24/02/2020 || 100.00 || || 100.00'
+        "#{Time.now.strftime('%d/%m/%Y')} || 100.00 || || 100.00"
       ].join("\n")
     end
   end
