@@ -21,13 +21,6 @@ class Account
     @transactions << @transaction.new(type: 'withdrawal', amount: amount, balance: @balance)
   end
 
-  def print_statement
-    header = ['date || credit || debit || balance']
-    sorted_transactions = @transactions.sort_by(&:created_at).reverse
-    sorted_transactions.each { |tran| header << tran.print }
-    header.join("\n")
-  end
-
   private
 
   def transaction(transaction)

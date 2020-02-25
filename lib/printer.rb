@@ -1,10 +1,6 @@
 class Printer
   HEADER = ['date || credit || debit || balance']
 
-  # def initialize(account: account)
-  #   @account = account
-  # end
-
   def self.print_statement(account: account)
     new_statement = HEADER.clone
     sorted_transactions = account.transactions.sort_by(&:created_at).reverse

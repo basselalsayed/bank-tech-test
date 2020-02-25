@@ -2,11 +2,13 @@
 
 require_relative 'account'
 require_relative 'transaction'
+require_relative 'printer'
 class Client
   attr_reader :account
 
-  def initialize(account: Account.new)
+  def initialize(account: Account.new, printer: Printer)
     @account = account
+    @printer = printer
   end
 
   def deposit(amount:)
@@ -18,6 +20,6 @@ class Client
   end
 
   def print_statement
-    Printer.print_statement(account: @account)
+    @printer.print_statement(account: @account)
   end
 end
