@@ -12,8 +12,8 @@
 # Classes and Methods
 ## Client
 * account/(s) - a single account or array of accounts
-* deposit (creates a new instance of Deposit with the relevant attributes)
-* withdraw (creates a new instance of Withdrawl with the relevant attributes)
+* deposit (creates a new instance of transaction with type: deposit + relevant attributes)
+* withdraw (creates a new instance of transaction with type: withdrawal + the relevant attributes)
 * print_statement (calls upon account.statement instance method)
 
 # Account
@@ -30,4 +30,50 @@ Since there is no database with unique keys attached to the models we will simpl
 
 ## Changelog v1.1
 * Classes changed to have one transaction class with a `type` attribute equalling either deposit or withdrawal
- 
+
+# Setup
+## 1. First clone this directory somewhere on your machine
+`git clone git@github.com:basselalsayed/bank-tech-test.git`
+## 2. Install ruby:
+OSX/Linux: 
+
+First install RVM from here:
+
+https://github.com/rvm/ubuntu_rvm
+
+We will be using ruby 2.6.5, after rvm has installed run:
+
+`rvm install 2.6.5`
+
+Windows: 
+
+https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-2.6.5-1/rubyinstaller-devkit-2.6.5-1-x64.exe
+
+Restart your terminal after installing
+## 3. Install bundler
+- cd into the cloned directory
+- run: 
+  
+  `gem install bundler`
+
+- then:
+
+  `bundle update`
+# Usage
+- initialize irb and load up the relevent file by running
+
+  `irb`
+
+  `require './lib/client'`
+- to create new client and interact with it you can follow the examples below:
+    
+    `c = Client.new`
+
+    `c.deposit(amount: 100)`
+    
+    `c.print_statement`
+    
+    =>
+
+    `"date || credit || debit || balance
+    25/02/2020 || 100.00 || || 100.00"`

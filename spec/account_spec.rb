@@ -16,17 +16,11 @@ describe Account do
   # deposit and withdrawal are dummy instances of transaction class
   # that respond to how the Account class creates them
   let(:withdrawal) do
-    instance_double('Transaction', :withdrawal, { type: 'withdrawal',
+    instance_double('Transaction', :withdrawal, { type: 'withdrawal',``
                                                   amount: 500,
                                                   balance: 500,
                                                   created_at: Time.local(2020, 'feb', 25) })
   end
-  # let(:withdrawal) do
-  #   instance_double(:Transaction) #, { type: 'withdrawal',
-  #                                 #  amount: 500,
-  #                                 #  balance: 500,
-  #                                 #  created_at: Time.local(2020, 'feb', 25) })
-  # end
 
   before do
     allow(transaction).to receive(:new).with(hash_including(type: 'deposit')).and_return(deposit)
