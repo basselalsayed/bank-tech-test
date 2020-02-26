@@ -4,9 +4,9 @@ class Account
   attr_reader :transactions, :balance
 
   def initialize(balance: 0, transactions: [], transaction: transaction(transaction))
+    @balance = balance
     @transaction = transaction
     @transactions = transactions
-    @balance = balance
   end
 
   def deposit(amount:)
@@ -15,9 +15,8 @@ class Account
   end
 
   def withdraw(amount:)
-    raise 'Insufficient Funds' if (@balance - amount).negative?
+    raise 'Insufficient Funds' unless take_from_balance(amount)
 
-    take_from_balance(amount)
     @transactions << @transaction.new(type: 'withdrawal', amount: amount, balance: @balance)
   end
 
@@ -32,6 +31,6 @@ class Account
   end
 
   def take_from_balance(amount)
-    @balance -= amount
+    @balance < amount ? false : (@balance -= amount)
   end
 end
